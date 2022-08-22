@@ -14,8 +14,7 @@ def welcome_screen():
     # calling a function and passing user_input to it
     guess_range = user_options(user_input)
     if guess_range != 0:
-        welcome_screen()
-    generate_random_number(guess_range)
+        generate_random_number(guess_range)
 
 
 # User's Options
@@ -32,6 +31,7 @@ def user_options(user_input):
         exit(1)
     else:
         print(RED, 'Invalid Choice, Try Again')
+        welcome_screen()
     return guess_range
 
 def generate_random_number(guess_range):
