@@ -1,53 +1,66 @@
 from colours import *
 from random import randint
 
+
 # Welcome Screen Message
-print(BLUE, '**** Welcome To Your World Of Guessing ****'.upper())
-user_input = int(input(WHITE + 'How Well is Your Guessing Skills\n'
-                               '1. Normal (1 - 50)\n'
-                               '2. Intermediate (1 - 200)\n'
-                               '3. Legendary (1 - 500)\n'
-                               '4. Not Good Exit\n\n'
-                               'Choose Your Skill: '))
+def welcome_screen():
+    print(BLUE, '**** Welcome To Your World Of Guessing ****'.upper())
+    user_input = int(input(WHITE + 'How Well is Your Guessing Skills\n'
+                                   '1. Normal (1 - 50)\n'
+                                   '2. Intermediate (1 - 200)\n'
+                                   '3. Legendary (1 - 500)\n'
+                                   '4. Not Good Exit\n\n'
+                                   'Choose Your Skill: '))
+    # calling a function and passing user_input to it
+    guess_range = user_options(user_input)
+    if guess_range != 0:
+        welcome_screen()
+    generate_random_number(guess_range)
+
 
 # User's Options
-guess_range = 0
-if user_input == 1:
-    guess_range = 50
-elif user_input == 2:
-    guess_range = 200
-elif user_input == 3:
-    guess_range = 500
-elif user_input == 4:
-    print(BLUE, '**** Don\'t Let the Game Scare You, See you again ****'.upper())
-    exit(1)
-else:
-    print(RED, 'Invalid Choice, Try Again')
+def user_options(user_input):
+    guess_range = 0
+    if user_input == 1:
+        guess_range = 50
+    elif user_input == 2:
+        guess_range = 200
+    elif user_input == 3:
+        guess_range = 500
+    elif user_input == 4:
+        print(BLUE, '**** Don\'t Let the Game Scare You, See you again ****'.upper())
+        exit(1)
+    else:
+        print(RED, 'Invalid Choice, Try Again')
+    return guess_range
 
-# Generate Random number of a certain range
-generate_number = randint(1, guess_range)
+def generate_random_number(guess_range):
+    # Generate Random number of a certain range
+    generate_number = randint(1, guess_range)
 
-# User chances
-user_chances = 4
+    # User chances
+    user_chances = 4
 
-for i in range(4):
-    user_guess = int(input(WHITE + 'Guess a Number : '))
+    for i in range(4):
+        user_guess = int(input(WHITE + 'Guess a Number : '))
 
-    # Determine if the guess is correct
-    if user_guess == generate_number:
-        print(GREEN, f'Genuis!!!!, It wasn\'t Difficult right?')
-        break
-    elif user_guess > generate_number:
-        print(YELLOW, 'Too High, Try Again.')
-    elif user_guess < generate_number:
-        print(YELLOW, 'Guessed Number is Too Low, But You\'re Very close, Try Again.')
+        # Determine if the guess is correct
+        if user_guess == generate_number:
+            print(GREEN, f'Genuis!!!!, It wasn\'t Difficult right?')
+            break
+        elif user_guess > generate_number:
+            print(YELLOW, 'Too High, Try Again.')
+        elif user_guess < generate_number:
+            print(YELLOW, 'Guessed Number is Too Low, But You\'re Very close, Try Again.')
 
     # Chances left
     user_chances -= 1
     print(f'{user_chances} Life Left')
 
-# inform player the correct number
-if user_chances == 0:
-    print(f'You\'re Dead!!!!!')
-    print(f'The Guess Number Is {generate_number}')
+    # inform player the correct number
+    if user_chances == 0:
+        print(f'You\'re Dead!!!!!')
+        print(f'The Guess Number Is {generate_number}')
 
+
+welcome_screen()
