@@ -46,21 +46,21 @@ def generate_random_number(guess_range):
 
         # Determine if the guess is correct
         if user_guess == generate_number:
-            print(GREEN, f'Genuis!!!!, It wasn\'t Difficult right?')
+            print(GREEN, f'Genius!!!!, You guessed right')
             break
         elif user_guess > generate_number:
             print(YELLOW, 'Too High, Try Again.')
         elif user_guess < generate_number:
             print(YELLOW, 'Guessed Number is Too Low, But You\'re Very close, Try Again.')
 
-    # Chances left
-    user_chances -= 1
-    print(f'{user_chances} Life Left')
+        # Chances left
+        user_chances -= 1
+        print(f'{user_chances} Life Left')
 
-    # inform player the correct number
-    if user_chances == 0:
-        print(f'You\'re Dead!!!!!')
-        print(f'The Guess Number Is {generate_number}')
+        # inform player the correct number
+        if user_chances == 0:
+            print(f'You\'re Dead!!!!!')
+            print(f'The Guess Number Is {generate_number}')
 
 
 welcome_screen()
